@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1lmw8 | Full-Stack & AI Engineer</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Portfolio of F1lmw8 - Full-Stack Developer & Agentic AI Specialist building high-performance web applications and autonomous AI tools.">
+  <meta name="keywords" content="F1lmw8, Developer, Full-Stack, AI Engineer, React, Next.js, TypeScript, Python, Portfolio">
+  <meta name="author" content="F1lmw8">
+  
+  <!-- OpenGraph Tags -->
+  <meta property="og:title" content="F1lmw8 | Full-Stack & AI Engineer">
+  <meta property="og:description" content="Explore my projects, tech stack, and interactive developer portfolio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://f1lmw8.github.io">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress"></div>
+
+  <!-- Interactive Particle Background Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Custom Cursor Ring & Dot -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-badge">&lt;/&gt;</span> F1LMW8
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="terminal-toggle" class="icon-btn" title="Open Developer Terminal (CLI)">
+          <i data-lucide="terminal"></i>
+        </button>
+        <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+          <i data-lucide="moon"></i>
+        </button>
+        <button class="icon-btn mobile-toggle" title="Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text-content">
+          <div class="hero-tag">
+            <span class="status-dot"></span> Available for New Opportunities
+          </div>
+
+          <h1 class="hero-title">
+            Crafting Digital Solutions as <span class="text-gradient">F1lmw8</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            I am a <span class="typing-target typing-wrapper"></span> crafting modern web applications, autonomous agentic systems, and high-performance digital experiences.
+          </p>
+
+          <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">
+              <i data-lucide="sparkles"></i> Explore Projects
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <i data-lucide="mail"></i> Get In Touch
+            </a>
+            <a href="https://github.com/F1lmw8" target="_blank" rel="noopener" class="btn btn-secondary">
+              <i data-lucide="github"></i> GitHub Profile
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card-wrapper">
+          <div class="hero-card-glow"></div>
+          <div class="hero-avatar-card">
+            <div class="avatar-img-box">
+              <img id="avatar-img-element" src="assets/images/user-real.jpg" alt="F1lmw8 Photo" class="avatar-img">
+            </div>
+            <button id="avatar-switch-btn" class="filter-btn" style="font-size:0.75rem; padding:0.25rem 0.6rem; margin-bottom:1rem;">
+              <i data-lucide="sparkles"></i> Switch to Cyber Mode
+            </button>
+            <h3 class="hero-card-name">F1lmw8</h3>
+            <p class="hero-card-role">Full-Stack & AI Engineer</p>
+
+            <div class="hero-card-stats">
+              <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Projects</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">1.2k+</div>
+                <div class="stat-label">Commits</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Precision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">// Biography</span>
+        <h2 class="section-title">About & Experience</h2>
+        <p class="section-desc">Passionate about clean code architecture, intuitive user interfaces, and emerging AI technologies.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Architecting Modern Software</h3>
+          <p class="about-text">
+            Hello! I'm F1lmw8. I specialize in building end-to-end web applications, real-time analytics platforms, and intelligent agentic AI workflows. With a deep passion for clean frontend architecture and scalable backend services, I bridge the gap between design and functionality.
+          </p>
+
+          <div class="about-highlights">
+            <div class="highlight-box">
+              <i data-lucide="cpu" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4>Agentic AI</h4>
+                <p>LLMs & Autonomous Tools</p>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <i data-lucide="layers" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4>Full-Stack</h4>
+                <p>React, Next.js, Node, Python</p>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <i data-lucide="zap" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4>High Performance</h4>
+                <p>Fast render & 60fps animations</p>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <i data-lucide="shield-check" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4>Clean Architecture</h4>
+                <p>Maintainable, scalable code</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Milestones Timeline</h3>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2024 - PRESENT</div>
+              <h4 class="timeline-title">Lead AI & Full-Stack Architect</h4>
+              <p class="timeline-company">Independent / Open-Source</p>
+              <p class="timeline-desc">Building autonomous AI agents, developer tooling, and modern web application platforms.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">2022 - 2024</div>
+              <h4 class="timeline-title">Senior Web Developer</h4>
+              <p class="timeline-company">Tech Solutions</p>
+              <p class="timeline-desc">Developed real-time dashboards, SaaS web apps, and optimized backend APIs for enterprise clients.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">2020 - 2022</div>
+              <h4 class="timeline-title">Software Engineering Studies</h4>
+              <p class="timeline-company">Computer Science & Systems</p>
+              <p class="timeline-desc">Focused on algorithms, full-stack web development, database design, and cloud deployments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">// Capabilities</span>
+        <h2 class="section-title">Technical Expertise</h2>
+        <p class="section-desc">Technologies and frameworks I utilize to craft robust software applications.</p>
+      </div>
+
+      <div class="skills-filter">
+        <button class="filter-btn active" data-filter="all">All Skills</button>
+        <button class="filter-btn" data-filter="frontend">Frontend</button>
+        <button class="filter-btn" data-filter="backend">Backend</button>
+        <button class="filter-btn" data-filter="ai">AI & ML</button>
+        <button class="filter-btn" data-filter="tools">DevOps & Tools</button>
+      </div>
+
+      <div id="skills-container" class="skills-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">// Showcase</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-desc">A selection of recent applications, open-source projects, and AI systems built by F1lmw8.</p>
+      </div>
+
+      <div class="skills-filter projects-filter">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="ai">AI & ML</button>
+        <button class="filter-btn" data-filter="web">Web Apps</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="open-source">Open Source</button>
+      </div>
+
+      <div id="projects-container" class="projects-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">// Get In Touch</span>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-desc">Have a project in mind, a question, or want to collaborate? Send a message!</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Reach Out</h3>
+            <p>I am always open to discussing new projects, creative ideas, or technical collaborations.</p>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i data-lucide="mail"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Email</div>
+                <div style="font-weight: 600;">apichai.c.dev@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i data-lucide="github"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">GitHub</div>
+                <a href="https://github.com/F1lmw8" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">github.com/F1lmw8</a>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button id="copy-email-btn" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                <i data-lucide="copy"></i> Copy Email Address
+              </button>
+            </div>
+          </div>
+
+          <form id="contact-form">
+            <div class="form-group">
+              <label class="form-label" for="form-name">Your Name</label>
+              <input type="text" id="form-name" class="form-input" placeholder="e.g. Alex Rivera" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-email">Your Email</label>
+              <input type="email" id="form-email" class="form-input" placeholder="alex@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-message">Message</label>
+              <textarea id="form-message" class="form-textarea" placeholder="Hello F1lmw8, I would like to discuss..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              <i data-lucide="send"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#hero" class="footer-link">Home</a>
+        <a href="#about" class="footer-link">About</a>
+        <a href="#skills" class="footer-link">Skills</a>
+        <a href="#projects" class="footer-link">Projects</a>
+        <a href="#contact" class="footer-link">Contact</a>
+        <a href="https://github.com/F1lmw8" target="_blank" class="footer-link">GitHub</a>
+      </div>
+      <p>&copy; 2026 F1lmw8. Built with passion &amp; web standards. Hosted on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <!-- TERMINAL MODAL -->
+  <div id="terminal-modal" class="terminal-modal">
+    <div class="terminal-box">
+      <canvas id="matrix-canvas"></canvas>
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span id="terminal-close" class="dot dot-red" title="Close"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <div class="terminal-title">f1lmw8@developer-box: ~ (zsh)</div>
+        <div style="width: 36px;"></div>
+      </div>
+      <div class="terminal-body">
+        <div style="color: var(--accent-cyan); font-weight: bold; margin-bottom: 0.5rem;">
+          Welcome to F1lmw8 Developer CLI v2.4.0
+        </div>
+        <div style="color: var(--text-muted); margin-bottom: 1rem;">
+          Type '<span style="color: #f59e0b;">help</span>' to see all available commands or '<span style="color: #f59e0b;">matrix</span>' for fun.
+        </div>
+        <div id="terminal-output" class="terminal-output"></div>
+        <div class="terminal-prompt-line">
+          <span class="prompt-user">guest@f1lmw8</span>:<span class="prompt-symbol">~</span>$&nbsp;
+          <input type="text" id="terminal-input" class="terminal-input" placeholder="type a command..." autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-box" class="modal-content-box">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/projects-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
