@@ -2,6 +2,20 @@
 
 const PROJECTS_DATA = [
   {
+    id: "project-pharmacy",
+    title: "Multi-Language Pharmacy Label & LINE OA System",
+    category: "web",
+    categoryLabel: "HealthTech & Web",
+    image: "assets/images/project-pharmacy.jpg",
+    description: "Tri-lingual (TH/EN/ZH) smart prescription label printer with direct barcode generation, LINE OA Digital Label delivery, and PDPA-compliant patient health registry.",
+    fullDescription: "A production-grade pharmacy workflow suite built for modern retail drugstores. Features real-time WYSIWYG sticker printing with Code 128 barcodes, multi-language dosage assembly (Thai, English, Chinese), automated LINE Official Account digital label dispatch via Vercel Serverless, Supabase real-time cloud syncing, SheetJS Excel master drug import, and PDPA-compliant digital consent forms.",
+    tags: ["JavaScript", "LINE LIFF", "Supabase", "Vercel Serverless", "SheetJS", "LINE Messaging API", "PDPA Compliant"],
+    stars: 320,
+    forks: 48,
+    demoUrl: "https://pharmacy-label-system.vercel.app",
+    githubUrl: "https://github.com/F1lmw8/Pharmacy_Label_System"
+  },
+  {
     id: "project-1",
     title: "Aether AI Agent Command Center",
     category: "ai",
@@ -28,6 +42,20 @@ const PROJECTS_DATA = [
     forks: 45,
     demoUrl: "https://github.com/F1lmw8",
     githubUrl: "https://github.com/F1lmw8"
+  },
+  {
+    id: "project-pos",
+    title: "Point of Sale (POS) Retail Engine",
+    category: "web",
+    categoryLabel: "Retail POS",
+    image: "assets/images/project-web-app.png",
+    description: "Modern point-of-sale retail solution with fast barcode scanning, inventory management, cashier receipt printing, and daily sales ledger.",
+    fullDescription: "Full-featured retail POS application designed for rapid checkout operations, product catalog management, barcode lookup, order history tracking, and offline resilience.",
+    tags: ["JavaScript", "Node.js", "CSS3", "Express", "SQLite/PostgreSQL"],
+    stars: 175,
+    forks: 34,
+    demoUrl: "https://github.com/F1lmw8/Pos_project",
+    githubUrl: "https://github.com/F1lmw8/Pos_project"
   },
   {
     id: "project-3",
@@ -63,11 +91,11 @@ const SKILLS_DATA = [
   { name: "JavaScript / TypeScript", category: "frontend", icon: "code-2", level: 95 },
   { name: "React / Next.js", category: "frontend", icon: "atom", level: 90 },
   { name: "HTML5 / CSS3 / Glassmorphism", category: "frontend", icon: "layout", level: 95 },
+  { name: "LINE LIFF & Messaging API", category: "frontend", icon: "message-square", level: 92 },
   { name: "Node.js / Express / Python", category: "backend", icon: "server", level: 88 },
   { name: "FastAPI / REST / GraphQL", category: "backend", icon: "database", level: 85 },
-  { name: "PostgreSQL / MongoDB / Redis", category: "backend", icon: "hard-drive", level: 82 },
+  { name: "Supabase / PostgreSQL / Redis", category: "backend", icon: "hard-drive", level: 88 },
   { name: "LLMs / Agentic AI Systems", category: "ai", icon: "brain", level: 88 },
-  { name: "PyTorch / Transformers API", category: "ai", icon: "cpu", level: 80 },
   { name: "Git / GitHub / CI/CD", category: "tools", icon: "git-branch", level: 92 },
-  { name: "Docker / Cloud Hosting", category: "tools", icon: "cloud", level: 85 }
+  { name: "Vercel / Cloud Infrastructure", category: "tools", icon: "cloud", level: 90 }
 ];
