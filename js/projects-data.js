@@ -23,7 +23,7 @@ const PROJECTS_DATA = [
     fullDescription: "The first prototype of my senior project — about 40–50% of a full pharmacy POS was built before the project pivoted to the Pharmacy Label System (Chalakya), but the completed features are fully working. A Next.js 15 App Router system for Thai drugstores. Pharmacists can search drugs by Thai or English name (Thai phonetic mapper), view RDU details and leaflets, sell with PromptPay QR payment, and manage lot-based stock, stock-in, and sales logs with Recharts dashboards backed by PostgreSQL, plus GPP reports (ข.ย. 9/10/11), patient allergy alerts, FDA product lookup, Goods Receipt Notes, and VAT / Section 86 tax invoices with Excel export. A built-in AI assistant (Vercel AI SDK + Gemini) calls RxNorm and openFDA tools and answers only from official FDA data, with a zero-hallucination guardrail.",
     tags: ["Next.js 15", "React 19", "PostgreSQL", "Vercel AI SDK", "Gemini", "openFDA", "Recharts", "PromptPay QR"],
     year: "2026",
-    githubUrl: "https://github.com/F1lmw8/Pos_project/tree/film"
+    githubUrl: "https://github.com/F1lmw8/Pos_project"
   },
   {
     id: "project-nocode-adventure",
