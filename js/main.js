@@ -413,16 +413,16 @@ window.openProjectModal = function(id) {
     <h2 style="font-size:1.75rem; font-weight:800; margin-bottom:0.75rem;">${project.title}</h2>
     <p style="color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem;">${project.fullDescription}</p>
     <div style="display:flex; gap:1.5rem; margin-bottom:1.5rem; color:var(--text-muted); font-family:var(--font-mono); font-size:0.9rem;">
-      <span>⭐ ${project.stars} Stars</span>
-      <span>🍴 ${project.forks} Forks</span>
+      <span>📅 ${project.year}</span>
+      <span>${project.demoUrl ? '🟢 Live' : '📦 Source available'}</span>
     </div>
     <div class="project-tags" style="margin-bottom:1.5rem;">
       ${project.tags.map(t => `<span class="project-tag" style="font-size:0.85rem; padding:0.3rem 0.7rem;">${t}</span>`).join('')}
     </div>
     <div style="display:flex; gap:1rem;">
-      <a href="${project.demoUrl}" target="_blank" class="btn btn-primary" style="flex:1; justify-content:center;">
+      ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="flex:1; justify-content:center;">
         <i data-lucide="external-link"></i> Live Demo
-      </a>
+      </a>` : ''}
       <a href="${project.githubUrl}" target="_blank" class="btn btn-secondary" style="flex:1; justify-content:center;">
         <i data-lucide="github"></i> Source Code
       </a>
