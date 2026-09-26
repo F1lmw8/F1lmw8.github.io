@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#6366f1"/></linearGradient>
+<pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="#fff" stroke-opacity=".06"/></pattern></defs>
+<rect width="1200" height="675" fill="#0b1120"/><rect width="1200" height="675" fill="url(#g)" opacity=".55"/><rect width="1200" height="675" fill="url(#p)"/>
+<circle cx="940" cy="340" r="260" fill="#fff" opacity=".06"/>
+<g stroke="#fff" stroke-opacity=".9" stroke-width="6" fill="none"><rect x="820" y="210" width="220" height="260" rx="22"/><path d="M870 290h120M870 340h120M870 390h70"/><circle cx="1010" cy="430" r="46" fill="#0b1120"/><path d="M990 430h40M1010 410v40"/></g>
+<text x="80" y="300" font-family="Menlo,monospace" font-size="26" fill="#fff" fill-opacity=".75">// F1lmw8 project</text>
+<text x="80" y="370" font-family="Helvetica,Arial,sans-serif" font-size="46" font-weight="800" fill="#fff">RDU PHARMACY POS</text>
+<text x="80" y="425" font-family="Helvetica,Arial,sans-serif" font-size="28" fill="#fff" fill-opacity=".85">AI Clinical Agent · Next.js 15</text>
+</svg>

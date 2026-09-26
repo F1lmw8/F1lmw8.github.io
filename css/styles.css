@@ -256,3 +256,10 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 1.5rem 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+/* Links to the developer portfolio page */
+.nav-desktop a.nav-portfolio { color: var(--brand-600); font-weight: 600; }
+.nav-mobile nav a.nav-portfolio { color: var(--brand-600); font-weight: 600; border-top: 1px solid var(--line); border-radius: 0 0 8px 8px; }
+.about-link { margin-top: 24px; }
+.footer-link { color: var(--brand-600); font-weight: 500; }
+.footer-link:hover { text-decoration: underline; }

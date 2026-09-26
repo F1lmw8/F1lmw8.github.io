@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1lmw8 | Developer Portfolio</title>
+  <meta name="description" content="พอร์ตโฟลิโอของ F1lmw8 นักศึกษาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยแม่โจ้ Full-Stack Developer ผลงานด้าน HealthTech, Cloud และ AI">
+  <meta name="keywords" content="F1lmw8, Developer, Full-Stack, Portfolio, Maejo University, Computer Science, Next.js, Python, Docker">
+  <meta name="author" content="F1lmw8">
+
+  <meta property="og:title" content="F1lmw8 | Developer Portfolio">
+  <meta property="og:description" content="โปรเจค ทักษะ และประสบการณ์ของ F1lmw8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://f1lmw8.github.io/portfolio.html">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6399'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
+  <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+
+  <div class="scroll-progress"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-badge">&lt;/&gt;</span> F1LMW8
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active" data-i18n="nav.home">หน้าแรก</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav.about">เกี่ยวกับ</a></li>
+        <li><a href="#skills" class="nav-link" data-i18n="nav.skills">ทักษะ</a></li>
+        <li><a href="#projects" class="nav-link" data-i18n="nav.projects">โปรเจค</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav.contact">ติดต่อ</a></li>
+        <li><a href="index.html" class="nav-link nav-link-hire" data-i18n="nav.hire">จ้างงาน</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="lang-toggle" class="lang-toggle" data-i18n-attr="aria-label:lang.switch" aria-label="Switch to English">
+          <span data-lang="th">TH</span><span class="lang-sep" aria-hidden="true">/</span><span data-lang="en">EN</span>
+        </button>
+        <button id="terminal-toggle" class="icon-btn" data-i18n-attr="title:nav.terminal" title="เปิด Terminal">
+          <i data-lucide="terminal"></i>
+        </button>
+        <button id="theme-toggle" class="icon-btn" data-i18n-attr="title:nav.theme" title="สลับธีม">
+          <i data-lucide="moon"></i>
+        </button>
+        <button class="icon-btn mobile-toggle" data-i18n-attr="title:nav.menu" title="เมนู">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text-content">
+          <div class="hero-tag">
+            <span class="status-dot"></span> <span data-i18n="hero.tag">เปิดรับงานและโอกาสใหม่ ๆ</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span data-i18n="hero.title">สร้างซอฟต์แวร์ที่ใช้งานได้จริงในชื่อ</span> <span class="text-gradient">F1lmw8</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            <span data-i18n="hero.subtitle.pre">ผมเป็น</span> <span class="typing-target typing-wrapper"></span> <span data-i18n="hero.subtitle.post">ที่สร้างเว็บแอปแบบ full-stack เครื่องมือ HealthTech สำหรับร้านยา และระบบที่ใช้ AI ช่วยงาน</span>
+          </p>
+
+          <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">
+              <i data-lucide="sparkles"></i> <span data-i18n="hero.explore">ดูโปรเจค</span>
+            </a>
+            <a href="index.html" class="btn btn-secondary">
+              <i data-lucide="briefcase"></i> <span data-i18n="hero.hire">จ้างงาน / ราคา</span>
+            </a>
+            <a href="https://github.com/F1lmw8" target="_blank" rel="noopener" class="btn btn-secondary">
+              <i data-lucide="github"></i> <span data-i18n="hero.github">GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card-wrapper">
+          <div class="hero-card-glow"></div>
+          <div class="hero-avatar-card">
+            <div class="avatar-img-box">
+              <img id="avatar-img-element" src="assets/images/user-real.jpg" alt="F1lmw8" class="avatar-img">
+            </div>
+            <button id="avatar-switch-btn" class="filter-btn" style="font-size:0.75rem; padding:0.25rem 0.6rem; margin-bottom:1rem;">
+              <i data-lucide="sparkles"></i> <span data-i18n="hero.avatarCyber">เปลี่ยนเป็นโหมด Cyber</span>
+            </button>
+            <h3 class="hero-card-name">F1lmw8</h3>
+            <p class="hero-card-role" data-i18n="hero.role">CS Student · Full-Stack Developer</p>
+
+            <div class="hero-card-stats">
+              <div class="stat-item">
+                <div class="stat-number">40+</div>
+                <div class="stat-label" data-i18n="hero.stat1">Repos</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label" data-i18n="hero.stat2">เดโมออนไลน์</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">MJU</div>
+                <div class="stat-label" data-i18n="hero.stat3">วิทยาการคอมฯ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="about.sub">// ประวัติ</span>
+        <h2 class="section-title" data-i18n="about.title">เกี่ยวกับ & ประสบการณ์</h2>
+        <p class="section-desc" data-i18n="about.desc">ชอบโค้ดที่เป็นระเบียบ UI ที่ใช้ง่าย และเทคโนโลยี AI ใหม่ ๆ</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;" data-i18n="about.cardTitle">สร้างซอฟต์แวร์สำหรับโลกจริง</h3>
+          <p class="about-text" data-i18n="about.body"></p>
+
+          <div class="about-highlights">
+            <div class="highlight-box">
+              <i data-lucide="cpu" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4 data-i18n="about.h1.title">AI Integration</h4>
+                <p data-i18n="about.h1.desc">LLM tool-calling, Gemini</p>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <i data-lucide="layers" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4 data-i18n="about.h2.title">Full-Stack</h4>
+                <p data-i18n="about.h2.desc">Next.js, Vue, Express, FastAPI</p>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <i data-lucide="cloud" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4 data-i18n="about.h3.title">Cloud & DevOps</h4>
+                <p data-i18n="about.h3.desc">Docker, gRPC, Vercel, Render</p>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <i data-lucide="pill" class="highlight-icon"></i>
+              <div class="highlight-info">
+                <h4 data-i18n="about.h4.title">HealthTech</h4>
+                <p data-i18n="about.h4.desc">ระบบ POS และฉลากยา</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;" data-i18n="about.timeline">เส้นทาง</h3>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date" data-i18n="about.t1.date">2026</div>
+              <h4 class="timeline-title" data-i18n="about.t1.title"></h4>
+              <p class="timeline-company"><a href="https://chalakya.in.th" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: none;">chalakya.in.th</a></p>
+              <p class="timeline-desc" data-i18n="about.t1.desc"></p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date" data-i18n="about.t2.date">2025 - 2026</div>
+              <h4 class="timeline-title" data-i18n="about.t2.title">Cloud & DevOps</h4>
+              <p class="timeline-company" data-i18n="about.t2.company"></p>
+              <p class="timeline-desc" data-i18n="about.t2.desc"></p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date" data-i18n="about.t3.date">2023 - ปัจจุบัน</div>
+              <h4 class="timeline-title" data-i18n="about.t3.title"></h4>
+              <p class="timeline-company" data-i18n="about.t3.company"></p>
+              <p class="timeline-desc" data-i18n="about.t3.desc"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="skills.sub">// ความสามารถ</span>
+        <h2 class="section-title" data-i18n="skills.title">ทักษะทางเทคนิค</h2>
+        <p class="section-desc" data-i18n="skills.desc">เทคโนโลยีและเฟรมเวิร์กที่ใช้สร้างซอฟต์แวร์</p>
+      </div>
+
+      <div class="skills-filter">
+        <button class="filter-btn active" data-filter="all" data-i18n="skills.all">ทั้งหมด</button>
+        <button class="filter-btn" data-filter="frontend" data-i18n="skills.frontend">Frontend</button>
+        <button class="filter-btn" data-filter="backend" data-i18n="skills.backend">Backend</button>
+        <button class="filter-btn" data-filter="ai" data-i18n="skills.ai">AI</button>
+        <button class="filter-btn" data-filter="tools" data-i18n="skills.tools">DevOps & Tools</button>
+      </div>
+
+      <div id="skills-container" class="skills-grid"></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="projects.sub">// ผลงาน</span>
+        <h2 class="section-title" data-i18n="projects.title">โปรเจคเด่น</h2>
+        <p class="section-desc" data-i18n="projects.desc">ตัวอย่างงานที่พัฒนาจริง ทั้งเว็บแอป ระบบหลังบ้าน และเกม</p>
+      </div>
+
+      <div class="skills-filter projects-filter">
+        <button class="filter-btn active" data-filter="all" data-i18n="projects.all">ทั้งหมด</button>
+        <button class="filter-btn" data-filter="ai" data-i18n="projects.ai">AI</button>
+        <button class="filter-btn" data-filter="web" data-i18n="projects.web">เว็บแอป</button>
+        <button class="filter-btn" data-filter="devops" data-i18n="projects.devops">Backend & DevOps</button>
+        <button class="filter-btn" data-filter="game" data-i18n="projects.game">เกม</button>
+      </div>
+
+      <div id="projects-container" class="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="contact.sub">// ติดต่อ</span>
+        <h2 class="section-title" data-i18n="contact.title">มาคุยกันได้</h2>
+        <p class="section-desc" data-i18n="contact.desc">มีโปรเจคในใจ มีคำถาม หรืออยากร่วมงาน ทักมาได้เลย</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3 data-i18n="contact.reach">ช่องทางติดต่อ</h3>
+            <p data-i18n="contact.reachDesc"></p>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i data-lucide="mail"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Email</div>
+                <a id="contact-email" href="#" style="color: var(--text-primary); text-decoration: none; font-weight: 600;"></a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i data-lucide="github"></i></div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">GitHub</div>
+                <a href="https://github.com/F1lmw8" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">github.com/F1lmw8</a>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button id="copy-email-btn" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                <i data-lucide="copy"></i> <span data-i18n="contact.copy">คัดลอกอีเมล</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hire-panel">
+            <div class="hire-icon"><i data-lucide="briefcase"></i></div>
+            <h3 data-i18n="contact.hireTitle">ต้องการจ้างทำเว็บหรือแอป?</h3>
+            <p data-i18n="contact.hireDesc"></p>
+            <a href="index.html" class="btn btn-primary" style="justify-content: center;">
+              <span data-i18n="contact.hireBtn">ไปที่หน้ารับงาน</span> <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html" class="footer-link" data-i18n="nav.hire">จ้างงาน</a>
+        <a href="#about" class="footer-link" data-i18n="nav.about">เกี่ยวกับ</a>
+        <a href="#skills" class="footer-link" data-i18n="nav.skills">ทักษะ</a>
+        <a href="#projects" class="footer-link" data-i18n="nav.projects">โปรเจค</a>
+        <a href="#contact" class="footer-link" data-i18n="nav.contact">ติดต่อ</a>
+        <a href="https://github.com/F1lmw8" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      </div>
+      <p>&copy; <span id="year">2026</span> F1lmw8. <span data-i18n="footer.note">Hosted on GitHub Pages</span></p>
+    </div>
+  </footer>
+
+  <!-- TERMINAL MODAL -->
+  <div id="terminal-modal" class="terminal-modal">
+    <div class="terminal-box">
+      <canvas id="matrix-canvas"></canvas>
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span id="terminal-close" class="dot dot-red" title="Close"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <div class="terminal-title">f1lmw8@developer-box: ~ (zsh)</div>
+        <div style="width: 36px;"></div>
+      </div>
+      <div class="terminal-body">
+        <div style="color: var(--accent-cyan); font-weight: bold; margin-bottom: 0.5rem;">
+          Welcome to F1lmw8 Developer CLI v2.4.0
+        </div>
+        <div style="color: var(--text-muted); margin-bottom: 1rem;">
+          Type '<span style="color: #f59e0b;">help</span>' to see all available commands or '<span style="color: #f59e0b;">matrix</span>' for fun.
+        </div>
+        <div id="terminal-output" class="terminal-output"></div>
+        <div class="terminal-prompt-line">
+          <span class="prompt-user">guest@f1lmw8</span>:<span class="prompt-symbol">~</span>$&nbsp;
+          <input type="text" id="terminal-input" class="terminal-input" placeholder="type a command..." autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-box" class="modal-content-box"></div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/content.js"></script>
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>
