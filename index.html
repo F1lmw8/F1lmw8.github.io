@@ -1,378 +1,228 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1lmw8 | CS Student & Full-Stack Developer</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Portfolio of F1lmw8 (Apichai Chomthong) - Computer Science student at Maejo University building full-stack web apps, HealthTech tools, and AI-assisted systems.">
-  <meta name="keywords" content="F1lmw8, Developer, Full-Stack, Maejo University, Computer Science, React, Next.js, TypeScript, Python, Portfolio">
+  <title>F1lmw8 | รับเขียนเว็บไซต์และพัฒนาแอปพลิเคชัน</title>
+  <meta name="description" content="รับทำเว็บไซต์ เว็บแอป และแอปมือถือ ราคาเข้าถึงได้ เริ่มต้น 5,000 บาท โดยนักพัฒนา Full-Stack นักศึกษาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยแม่โจ้">
+  <meta name="keywords" content="รับทำเว็บไซต์, รับเขียนเว็บ, ฟรีแลนซ์, Next.js, React Native, เว็บแอป, แอปมือถือ, F1lmw8, Portfolio">
   <meta name="author" content="F1lmw8">
-  
-  <!-- OpenGraph Tags -->
-  <meta property="og:title" content="F1lmw8 | CS Student & Full-Stack Developer">
-  <meta property="og:description" content="Explore my projects, tech stack, and interactive developer portfolio.">
+  <meta name="theme-color" content="#faf8f5">
+
+  <meta property="og:title" content="F1lmw8 | รับเขียนเว็บไซต์และพัฒนาแอปพลิเคชัน">
+  <meta property="og:description" content="รับทำเว็บไซต์ เว็บแอป และแอปมือถือ ราคาเข้าถึงได้ เริ่มต้น 5,000 บาท">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://f1lmw8.github.io">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:locale:alternate" content="en_US">
 
-  <!-- Google Fonts -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6399'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a href="#main" class="skip-link" data-i18n="skip">ข้ามไปยังเนื้อหาหลัก</a>
 
-  <!-- Scroll Progress Bar -->
-  <div class="scroll-progress"></div>
-
-  <!-- Interactive Particle Background Canvas -->
-  <canvas id="particle-canvas"></canvas>
-
-  <!-- Custom Cursor Ring & Dot -->
-  <div class="custom-cursor"></div>
-  <div class="custom-cursor-dot"></div>
-
-  <!-- NAVIGATION BAR -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#hero" class="nav-logo">
-        <span class="logo-badge">&lt;/&gt;</span> F1LMW8
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">F</span>
+        <span class="brand-name">F1lmw8</span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#hero" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
+      <nav class="nav-desktop" aria-label="Main">
+        <a href="#expertise" data-i18n="nav.expertise">ความเชี่ยวชาญ</a>
+        <a href="#projects" data-i18n="nav.projects">ผลงาน</a>
+        <a href="#pricing" data-i18n="nav.pricing">ราคา</a>
+        <a href="#about" data-i18n="nav.about">เกี่ยวกับ</a>
+        <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
+      </nav>
 
-      <div class="nav-actions">
-        <button id="terminal-toggle" class="icon-btn" title="Open Developer Terminal (CLI)">
-          <i data-lucide="terminal"></i>
+      <div class="header-actions">
+        <button type="button" class="lang-toggle" id="lang-toggle" data-i18n-attr="aria-label:lang.switch" aria-label="Switch to English">
+          <span data-lang="th">TH</span><span class="lang-sep" aria-hidden="true">/</span><span data-lang="en">EN</span>
         </button>
-        <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
-          <i data-lucide="moon"></i>
-        </button>
-        <button class="icon-btn mobile-toggle" title="Menu">
-          <i data-lucide="menu"></i>
-        </button>
+        <a href="#contact" class="btn-small nav-cta" data-i18n="nav.cta">ปรึกษาฟรี</a>
+
+        <details class="nav-mobile">
+          <summary data-i18n-attr="aria-label:nav.menu" aria-label="เปิดเมนู">
+            <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </summary>
+          <nav aria-label="Mobile">
+            <a href="#expertise" data-i18n="nav.expertise">ความเชี่ยวชาญ</a>
+            <a href="#projects" data-i18n="nav.projects">ผลงาน</a>
+            <a href="#pricing" data-i18n="nav.pricing">ราคา</a>
+            <a href="#about" data-i18n="nav.about">เกี่ยวกับ</a>
+            <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
+          </nav>
+        </details>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- HERO SECTION -->
-  <section id="hero" class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-text-content">
-          <div class="hero-tag">
-            <span class="status-dot"></span> Available for New Opportunities
-          </div>
-
+  <main id="main">
+    <!-- HERO -->
+    <section id="top" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="pill">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-i18n="hero.badge">เปิดรับงานใหม่ · Freelance Web Developer</span>
+          </p>
           <h1 class="hero-title">
-            Crafting Digital Solutions as <span class="text-gradient">F1lmw8</span>
+            <span data-i18n="hero.title1">รับเขียนเว็บไซต์และ</span><br>
+            <span class="accent" data-i18n="hero.title2">พัฒนาแอปพลิเคชัน</span>
           </h1>
-
-          <p class="hero-subtitle">
-            I am a <span class="typing-target typing-wrapper"></span> building full-stack web apps, HealthTech tools for pharmacies, and AI-assisted systems.
+          <p class="hero-lead">
+            <span data-i18n="hero.lead">บริการรับทำเว็บไซต์ครบวงจร ตอบโจทย์ธุรกิจคุณในราคาที่เข้าถึงได้ เริ่มต้นเพียง</span>
+            <strong data-i18n="hero.price">5,000 บาท</strong>
           </p>
-
-          <div class="hero-btns">
-            <a href="#projects" class="btn btn-primary">
-              <i data-lucide="sparkles"></i> Explore Projects
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">
+              <span data-i18n="hero.ctaPrimary">พูดคุย/ปรึกษาโปรเจกต์</span>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="#contact" class="btn btn-secondary">
-              <i data-lucide="mail"></i> Get In Touch
-            </a>
-            <a href="https://github.com/F1lmw8" target="_blank" rel="noopener" class="btn btn-secondary">
-              <i data-lucide="github"></i> GitHub Profile
-            </a>
+            <a href="#projects" class="btn btn-secondary" data-i18n="hero.ctaSecondary">ดูผลงาน</a>
           </div>
         </div>
 
-        <div class="hero-card-wrapper">
-          <div class="hero-card-glow"></div>
-          <div class="hero-avatar-card">
-            <div class="avatar-img-box">
-              <img id="avatar-img-element" src="assets/images/user-real.jpg" alt="F1lmw8 Photo" class="avatar-img">
+        <div class="card profile-card">
+          <div class="profile-head">
+            <div class="profile-mark">F</div>
+            <div>
+              <p class="profile-name">F1lmw8</p>
+              <p class="profile-role" data-i18n="hero.role">Full-Stack Web & Mobile Developer</p>
             </div>
-            <button id="avatar-switch-btn" class="filter-btn" style="font-size:0.75rem; padding:0.25rem 0.6rem; margin-bottom:1rem;">
-              <i data-lucide="sparkles"></i> Switch to Cyber Mode
-            </button>
-            <h3 class="hero-card-name">F1lmw8</h3>
-            <p class="hero-card-role">CS Student · Full-Stack Developer</p>
+          </div>
+          <hr>
+          <p class="profile-get" data-i18n="hero.getTitle">สิ่งที่คุณจะได้รับ</p>
+          <ul class="check-list">
+            <li><span class="check-dot"><svg class="icon icon-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span data-i18n="hero.get1">คุยตรงกับนักพัฒนา ไม่ผ่านคนกลาง</span></li>
+            <li><span class="check-dot"><svg class="icon icon-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span data-i18n="hero.get2">ราคาชัดเจน ไม่มีค่าใช้จ่ายแอบแฝง</span></li>
+            <li><span class="check-dot"><svg class="icon icon-xs" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg></span><span data-i18n="hero.get3">ดูแลหลังส่งมอบงาน</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-            <div class="hero-card-stats">
-              <div class="stat-item">
-                <div class="stat-number">40+</div>
-                <div class="stat-label">Repos</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Live Demos</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number">MJU</div>
-                <div class="stat-label">Comp. Sci.</div>
-              </div>
-            </div>
+    <!-- EXPERTISE -->
+    <section id="expertise" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="expertise.eyebrow">Tech Stack & Expertise</p>
+          <h2 data-i18n="expertise.title">เทคโนโลยีที่ใช้พัฒนางาน</h2>
+          <p data-i18n="expertise.desc">เลือกใช้เครื่องมือที่ทันสมัยและเป็นมาตรฐานสากล เพื่อให้ระบบของคุณเร็ว ปลอดภัย และต่อยอดได้ในอนาคต</p>
+        </div>
+        <ul id="tech-list" class="tech-grid"></ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="projects.eyebrow">Featured Projects</p>
+          <h2 data-i18n="projects.title">ผลงานที่ผ่านมา</h2>
+          <p data-i18n="projects.desc">ตัวอย่างระบบที่พัฒนาจริง ตั้งแต่เว็บแอปพลิเคชันไปจนถึงแอปบนมือถือ</p>
+        </div>
+        <div id="project-list" class="project-grid"></div>
+        <div class="center-row">
+          <a href="https://github.com/F1lmw8" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+            <span data-i18n="projects.all">ดูผลงานทั้งหมดบน GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="pricing.eyebrow">Pricing</p>
+          <h2 data-i18n="pricing.title">ราคาชัดเจน เริ่มต้นได้ง่าย</h2>
+          <p data-i18n="pricing.desc">เหมาะสำหรับธุรกิจขนาดเล็ก ร้านค้า และผู้ที่ต้องการเริ่มมีเว็บไซต์เป็นของตัวเอง</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="card package-card">
+            <p class="tag-soft" data-i18n="pricing.badge">Basic Package</p>
+            <h3 data-i18n="pricing.name">แพ็กเกจเริ่มต้น 5,000 บาท</h3>
+            <p class="price-row">
+              <span class="price-from" data-i18n="pricing.from">เริ่มต้น</span>
+              <span class="price">฿5,000</span>
+            </p>
+            <ul id="package-list" class="check-list check-list-solid"></ul>
+            <a href="#contact" class="btn btn-primary btn-block" data-i18n="pricing.cta">เริ่มต้นโปรเจกต์</a>
+            <p class="fine-print" data-i18n="pricing.note">* ราคาอาจเปลี่ยนแปลงตามขอบเขตงาน ประเมินราคาฟรีก่อนเริ่มงาน</p>
+          </div>
+          <div class="card process-card">
+            <h3 data-i18n="pricing.customTitle">ต้องการระบบที่ซับซ้อนกว่านี้?</h3>
+            <p data-i18n="pricing.customDesc">เว็บแอปพลิเคชัน ระบบหลังบ้าน หรือแอปมือถือ สามารถประเมินราคาตามความต้องการได้ โดยมีขั้นตอนดังนี้</p>
+            <ol id="process-list" class="steps"></ol>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ABOUT SECTION -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">// Biography</span>
-        <h2 class="section-title">About & Experience</h2>
-        <p class="section-desc">Passionate about clean code architecture, intuitive user interfaces, and emerging AI technologies.</p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-card">
-          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Building Real-World Software</h3>
-          <p class="about-text">
-            Hello! I'm Apichai Chomthong (F1lmw8), a Computer Science student at Maejo University. I build end-to-end web applications — from pharmacy POS and labeling systems to learning games — and I enjoy connecting them to real data, cloud services, and AI. My senior project, Chalakya, is a pharmacy label system that is live at chalakya.in.th.
-          </p>
-
-          <div class="about-highlights">
-            <div class="highlight-box">
-              <i data-lucide="cpu" class="highlight-icon"></i>
-              <div class="highlight-info">
-                <h4>AI Integration</h4>
-                <p>LLM tool-calling, Gemini</p>
-              </div>
-            </div>
-            <div class="highlight-box">
-              <i data-lucide="layers" class="highlight-icon"></i>
-              <div class="highlight-info">
-                <h4>Full-Stack</h4>
-                <p>Next.js, Vue, Express, FastAPI</p>
-              </div>
-            </div>
-            <div class="highlight-box">
-              <i data-lucide="cloud" class="highlight-icon"></i>
-              <div class="highlight-info">
-                <h4>Cloud & DevOps</h4>
-                <p>Docker, gRPC, Vercel, Render</p>
-              </div>
-            </div>
-            <div class="highlight-box">
-              <i data-lucide="pill" class="highlight-icon"></i>
-              <div class="highlight-info">
-                <h4>HealthTech</h4>
-                <p>Pharmacy POS & labeling</p>
-              </div>
-            </div>
-          </div>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+          <h2 class="about-title" data-i18n="about.title">เกี่ยวกับผม</h2>
+          <p class="about-body" data-i18n="about.body">ผมเป็นนักศึกษาสาขาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยแม่โจ้ ที่ชอบสร้างระบบที่ใช้งานได้จริง</p>
         </div>
+        <ol class="timeline">
+          <li>
+            <p class="timeline-date" data-i18n="about.t1.date">2026</p>
+            <p class="timeline-title" data-i18n="about.t1.title">โปรเจคจบ: Chalakya ระบบฉลากยาหลายภาษา</p>
+            <p class="timeline-desc" data-i18n="about.t1.desc"></p>
+          </li>
+          <li>
+            <p class="timeline-date" data-i18n="about.t2.date">2025 – 2026</p>
+            <p class="timeline-title" data-i18n="about.t2.title">Cloud & DevOps</p>
+            <p class="timeline-desc" data-i18n="about.t2.desc"></p>
+          </li>
+          <li>
+            <p class="timeline-date" data-i18n="about.t3.date">2023 – ปัจจุบัน</p>
+            <p class="timeline-title" data-i18n="about.t3.title">วิทยาการคอมพิวเตอร์ มหาวิทยาลัยแม่โจ้</p>
+            <p class="timeline-desc" data-i18n="about.t3.desc"></p>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-        <div class="about-card">
-          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Milestones Timeline</h3>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-date">2026</div>
-              <h4 class="timeline-title">Senior Project — Chalakya Pharmacy Label System</h4>
-              <p class="timeline-company"><a href="https://chalakya.in.th" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: none;">chalakya.in.th</a></p>
-              <p class="timeline-desc">Tri-lingual prescription label printing with LINE OA digital labels, built after prototyping a full RDU pharmacy POS with an AI clinical assistant.</p>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-date">2025 - 2026</div>
-              <h4 class="timeline-title">Cloud & DevOps Coursework</h4>
-              <p class="timeline-company">Computer Science, Maejo University</p>
-              <p class="timeline-desc">Dockerised microservices with FastAPI and gRPC, and deployed full-stack apps (Express, Prisma, Supabase, Quasar) to Render and Netlify.</p>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-date">2023 - PRESENT</div>
-              <h4 class="timeline-title">B.Sc. Computer Science</h4>
-              <p class="timeline-company">Maejo University, Chiang Mai</p>
-              <p class="timeline-desc">Studying software development, web technologies, databases, and cloud computing, with many hands-on web projects along the way.</p>
-            </div>
-          </div>
+    <!-- CONTACT -->
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h2 data-i18n="contact.title">พูดคุย/ปรึกษาโปรเจกต์</h2>
+          <p data-i18n="contact.desc">ทักมาได้เลยทุกช่องทาง ยินดีให้คำปรึกษาฟรี ตอบกลับภายใน 24 ชั่วโมง</p>
+        </div>
+        <ul id="contact-list" class="contact-grid"></ul>
+        <div class="center-row">
+          <button type="button" id="copy-email" class="btn btn-secondary" data-i18n="contact.copy">คัดลอกอีเมล</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- SKILLS SECTION -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">// Capabilities</span>
-        <h2 class="section-title">Technical Expertise</h2>
-        <p class="section-desc">Technologies and frameworks I utilize to craft robust software applications.</p>
-      </div>
-
-      <div class="skills-filter">
-        <button class="filter-btn active" data-filter="all">All Skills</button>
-        <button class="filter-btn" data-filter="frontend">Frontend</button>
-        <button class="filter-btn" data-filter="backend">Backend</button>
-        <button class="filter-btn" data-filter="ai">AI & ML</button>
-        <button class="filter-btn" data-filter="tools">DevOps & Tools</button>
-      </div>
-
-      <div id="skills-container" class="skills-grid">
-        <!-- Rendered via JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS SECTION -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">// Showcase</span>
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-desc">A selection of recent applications, open-source projects, and AI systems built by F1lmw8.</p>
-      </div>
-
-      <div class="skills-filter projects-filter">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="ai">AI & ML</button>
-        <button class="filter-btn" data-filter="web">Web Apps</button>
-        <button class="filter-btn" data-filter="devops">Backend & DevOps</button>
-        <button class="filter-btn" data-filter="game">Games</button>
-      </div>
-
-      <div id="projects-container" class="projects-grid">
-        <!-- Rendered via JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">// Get In Touch</span>
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="section-desc">Have a project in mind, a question, or want to collaborate? Send a message!</p>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Reach Out</h3>
-            <p>I am always open to discussing new projects, creative ideas, or technical collaborations.</p>
-
-            <div class="contact-item">
-              <div class="contact-icon"><i data-lucide="mail"></i></div>
-              <div>
-                <div style="font-size: 0.8rem; color: var(--text-muted);">Email</div>
-                <div style="font-weight: 600;">apichai.c.dev@gmail.com</div>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon"><i data-lucide="github"></i></div>
-              <div>
-                <div style="font-size: 0.8rem; color: var(--text-muted);">GitHub</div>
-                <a href="https://github.com/F1lmw8" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">github.com/F1lmw8</a>
-              </div>
-            </div>
-
-            <div style="margin-top: 2rem;">
-              <button id="copy-email-btn" class="btn btn-secondary" style="width: 100%; justify-content: center;">
-                <i data-lucide="copy"></i> Copy Email Address
-              </button>
-            </div>
-          </div>
-
-          <form id="contact-form">
-            <div class="form-group">
-              <label class="form-label" for="form-name">Your Name</label>
-              <input type="text" id="form-name" class="form-input" placeholder="e.g. Alex Rivera" required>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="form-email">Your Email</label>
-              <input type="email" id="form-email" class="form-input" placeholder="alex@example.com" required>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="form-message">Message</label>
-              <textarea id="form-message" class="form-textarea" placeholder="Hello F1lmw8, I would like to discuss..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-              <i data-lucide="send"></i> Send Message
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <a href="#hero" class="footer-link">Home</a>
-        <a href="#about" class="footer-link">About</a>
-        <a href="#skills" class="footer-link">Skills</a>
-        <a href="#projects" class="footer-link">Projects</a>
-        <a href="#contact" class="footer-link">Contact</a>
-        <a href="https://github.com/F1lmw8" target="_blank" class="footer-link">GitHub</a>
-      </div>
-      <p>&copy; 2026 F1lmw8. Built with passion &amp; web standards. Hosted on GitHub Pages.</p>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> F1lmw8</p>
+      <p data-i18n="footer.built">Hosted on GitHub Pages</p>
     </div>
   </footer>
 
-  <!-- TERMINAL MODAL -->
-  <div id="terminal-modal" class="terminal-modal">
-    <div class="terminal-box">
-      <canvas id="matrix-canvas"></canvas>
-      <div class="terminal-header">
-        <div class="terminal-dots">
-          <span id="terminal-close" class="dot dot-red" title="Close"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
-        <div class="terminal-title">f1lmw8@developer-box: ~ (zsh)</div>
-        <div style="width: 36px;"></div>
-      </div>
-      <div class="terminal-body">
-        <div style="color: var(--accent-cyan); font-weight: bold; margin-bottom: 0.5rem;">
-          Welcome to F1lmw8 Developer CLI v2.4.0
-        </div>
-        <div style="color: var(--text-muted); margin-bottom: 1rem;">
-          Type '<span style="color: #f59e0b;">help</span>' to see all available commands or '<span style="color: #f59e0b;">matrix</span>' for fun.
-        </div>
-        <div id="terminal-output" class="terminal-output"></div>
-        <div class="terminal-prompt-line">
-          <span class="prompt-user">guest@f1lmw8</span>:<span class="prompt-symbol">~</span>$&nbsp;
-          <input type="text" id="terminal-input" class="terminal-input" placeholder="type a command..." autocomplete="off">
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- PROJECT DETAILS MODAL -->
-  <div id="modal-overlay" class="modal-overlay">
-    <div id="modal-box" class="modal-content-box">
-      <!-- Injected via JS -->
-    </div>
-  </div>
-
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toast-container" class="toast-container"></div>
-
-  <!-- JavaScript Files -->
-  <script src="js/projects-data.js"></script>
+  <script src="js/content.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

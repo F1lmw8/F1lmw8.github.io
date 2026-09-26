@@ -1,670 +1,174 @@
-// ==========================================================================
-// F1LMW8 PORTFOLIO - MAIN INTERACTIVE LOGIC
-// ==========================================================================
+/* Rendering + Thai/English switching. Content lives in js/content.js. */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initParticleCanvas();
-  initCustomCursor();
-  initNavbarAndScroll();
-  initTypingEffect();
-  initThemeToggle();
-  initAvatarToggle();
-  renderSkills('all');
-  renderProjects('all');
-  initSkillsObserver();
-  initTerminalModal();
-  initContactForm();
+const ICONS = {
+  check: '<path d="m5 12 4.5 4.5L19 7"/>',
+  arrowUpRight: '<path d="M7 17 17 7M8 7h9v9"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  phone: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+  game: '<rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M7 10.5v3M5.5 12h3M15.5 11h.01M18 13h.01"/>',
+  facebook: '<path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H7v3.5h2V21h3.5v-8.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"/>',
+  line: '<path d="M12 4c-4.97 0-9 3.13-9 7 0 3.47 3.24 6.37 7.6 6.92.3.07.7.2.8.45.1.23.06.58.03.81l-.13.78c-.04.23-.19.9.8.49 1-.41 5.33-3.14 7.28-5.37C20.67 13.6 21 12.35 21 11c0-3.87-4.03-7-9-7Z"/><path d="M8 9.5v3h1.6M11 9.5v3M13 12.5v-3l2 3v-3M18 9.5h-1.6v3H18M16.4 11H18"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/>',
+  github: '<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>',
+};
+
+const TYPE_LABEL = {
+  web: { icon: "globe", label: "Web Application" },
+  mobile: { icon: "phone", label: "Mobile Application" },
+  game: { icon: "game", label: "Web Game" },
+};
+
+const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
+
+const escapeHtml = (s) =>
+  String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+let lang = "th";
+const t = (key) => I18N[lang][key] ?? I18N.th[key] ?? key;
+const pick = (v) => (v && typeof v === "object" && !Array.isArray(v) ? v[lang] ?? v.th : v);
+
+/* ---------- Language ---------- */
+
+function detectLang() {
+  const fromUrl = new URLSearchParams(location.search).get("lang");
+  if (fromUrl === "th" || fromUrl === "en") return fromUrl;
+  try {
+    const saved = localStorage.getItem("lang");
+    if (saved === "th" || saved === "en") return saved;
+  } catch (_) { /* storage unavailable */ }
+  return "th"; // Thai first
+}
+
+function applyLang(next) {
+  lang = next;
+  document.documentElement.lang = lang;
+  document.title = t("meta.title");
+  document.querySelector('meta[name="description"]').setAttribute("content", t("meta.desc"));
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-attr]").forEach((el) => {
+    const [attr, key] = el.dataset.i18nAttr.split(":");
+    el.setAttribute(attr, t(key));
+  });
+  document.querySelectorAll(".lang-toggle [data-lang]").forEach((el) => {
+    el.classList.toggle("active", el.dataset.lang === lang);
+  });
+
+  renderAll();
+}
+
+/* ---------- Sections ---------- */
+
+function renderTech() {
+  document.getElementById("tech-list").innerHTML = TECH_STACK.map((s) => `
+    <li class="card tech-card">
+      <span class="tech-badge">${escapeHtml(s.badge)}</span>
+      <div>
+        <div class="tech-head"><h3>${escapeHtml(s.name)}</h3><span>${escapeHtml(s.category)}</span></div>
+        <p>${escapeHtml(pick(s.desc))}</p>
+      </div>
+    </li>`).join("");
+}
+
+function projectPreview(type) {
+  if (type === "mobile") {
+    return `<div class="preview"><div class="mock-phone"><div class="mock-notch"></div><div class="mock-block"></div><div class="mock-line w-75"></div><div class="mock-line w-50"></div></div></div>`;
+  }
+  if (type === "game") {
+    const colors = ["#ff7043", "#26c6da", "#ffca28", "#66bb6a", "#26c6da", "#ab47bc", "#ff7043", "#66bb6a"];
+    return `<div class="preview"><div class="mock-blocks">${colors.map((c) => `<span style="background:${c}"></span>`).join("")}</div></div>`;
+  }
+  return `<div class="preview"><div class="mock-browser"><div class="mock-bar"><span></span><span></span><span></span></div><div class="mock-body"><div><div class="mock-line"></div><div class="mock-line"></div><div class="mock-line w-66"></div></div><div><div class="mock-block"></div><div class="mock-line w-75"></div></div></div></div></div>`;
+}
+
+function renderProjects() {
+  document.getElementById("project-list").innerHTML = PROJECTS.map((p) => {
+    const type = TYPE_LABEL[p.type] || TYPE_LABEL.web;
+    const highlights = pick(p.highlights);
+    const links = [];
+    if (p.url) {
+      links.push(`<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="link-primary">${escapeHtml(p.urlLabel || t("projects.demo"))}${icon("arrowUpRight", "icon icon-sm")}</a>`);
+    }
+    if (p.repoUrl) {
+      links.push(`<a href="${escapeHtml(p.repoUrl)}" target="_blank" rel="noopener noreferrer" class="link-muted">${icon("github", "icon icon-sm")}${t("projects.source")}</a>`);
+    }
+    return `
+    <article class="card project-card">
+      ${projectPreview(p.type)}
+      <div class="project-body">
+        <p class="project-type">${icon(type.icon, "icon icon-sm")}${type.label}${p.badge ? `<span class="project-badge">${escapeHtml(pick(p.badge))}</span>` : ""}</p>
+        <h3>${escapeHtml(p.title)}</h3>
+        <p class="project-desc">${escapeHtml(pick(p.desc))}</p>
+        ${highlights ? `<ul class="project-highlights" aria-label="${escapeHtml(t("projects.features"))}">${highlights.map((h) => `<li>${icon("check", "icon icon-sm")}${escapeHtml(h)}</li>`).join("")}</ul>` : ""}
+        <div class="grow"></div>
+        <ul class="tags" aria-label="${escapeHtml(t("projects.tech"))}">${p.tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>
+        ${links.length ? `<div class="project-links">${links.join("")}</div>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function renderPricing() {
+  document.getElementById("package-list").innerHTML = pick(PACKAGE_FEATURES).map((f) => `
+    <li><span class="check-dot">${icon("check", "icon icon-xs")}</span><span>${escapeHtml(f)}</span></li>`).join("");
+
+  document.getElementById("process-list").innerHTML = PROCESS_STEPS.map((s, i) => `
+    <li><span class="step-num">${i + 1}</span><div><p class="step-title">${escapeHtml(pick(s.title))}</p><p class="step-desc">${escapeHtml(pick(s.desc))}</p></div></li>`).join("");
+}
+
+function renderContacts() {
+  document.getElementById("contact-list").innerHTML = CONTACTS.map((c) => {
+    const external = !c.href.startsWith("mailto:");
+    return `
+    <li>
+      <a href="${escapeHtml(c.href)}" ${external ? 'target="_blank" rel="noopener noreferrer"' : ""} class="card contact-card">
+        <span class="contact-icon">${icon(c.icon, "icon icon-lg")}</span>
+        <span class="contact-text"><span class="contact-label">${escapeHtml(c.label)}</span><span class="contact-value">${escapeHtml(c.value)}</span></span>
+        ${icon("arrowUpRight", "icon contact-arrow")}
+      </a>
+    </li>`;
+  }).join("");
+}
+
+function renderAll() {
+  renderTech();
+  renderProjects();
+  renderPricing();
+  renderContacts();
+}
+
+/* ---------- Interactions ---------- */
+
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+}
+
+document.getElementById("lang-toggle").addEventListener("click", () => {
+  const next = lang === "th" ? "en" : "th";
+  try { localStorage.setItem("lang", next); } catch (_) { /* storage unavailable */ }
+  applyLang(next);
 });
 
-/* ==========================================================================
-   PARTICLE CONSTELLATION CANVAS
-   ========================================================================== */
-function initParticleCanvas() {
-  const canvas = document.getElementById('particle-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-
-  const particles = [];
-  const particleCount = Math.min(width < 768 ? 35 : 75, 100);
-
-  const mouse = { x: null, y: null, radius: 140 };
-
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-
-  window.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.8;
-      this.vy = (Math.random() - 0.5) * 0.8;
-      this.radius = Math.random() * 2 + 1;
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-
-      // Mouse attraction / bounce
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= (dx / dist) * force * 2;
-          this.y -= (dy / dist) * force * 2;
-        }
-      }
-    }
-
-    draw() {
-      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = isDark ? 'rgba(0, 242, 254, 0.7)' : 'rgba(0, 162, 255, 0.7)';
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-    const lineColor = isDark ? 'rgba(0, 242, 254, ' : 'rgba(0, 120, 255, ';
-
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `${lineColor}${0.25 * (1 - dist / 120)})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
-/* ==========================================================================
-   CUSTOM CURSOR
-   ========================================================================== */
-function initCustomCursor() {
-  const cursor = document.querySelector('.custom-cursor');
-  const dot = document.querySelector('.custom-cursor-dot');
-  if (!cursor || !dot) return;
-
-  let mouseX = 0, mouseY = 0;
-  let cursorX = 0, cursorY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-  });
-
-  function render() {
-    cursorX += (mouseX - cursorX) * 0.15;
-    cursorY += (mouseY - cursorY) * 0.15;
-    cursor.style.transform = `translate(${cursorX - 16}px, ${cursorY - 16}px)`;
-    requestAnimationFrame(render);
-  }
-  render();
-
-  // Hover scale on interactive elements
-  const hoverables = document.querySelectorAll('a, button, input, textarea, .filter-btn, .project-card, .skill-card');
-  hoverables.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '48px';
-      cursor.style.height = '48px';
-      cursor.style.borderColor = 'var(--accent-pink)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '32px';
-      cursor.style.height = '32px';
-      cursor.style.borderColor = 'var(--accent-cyan)';
-    });
-  });
-}
-
-/* ==========================================================================
-   NAVBAR & SCROLL PROGRESS
-   ========================================================================== */
-function initNavbarAndScroll() {
-  const navbar = document.querySelector('.navbar');
-  const scrollProgress = document.querySelector('.scroll-progress');
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const navLinks = document.querySelector('.nav-links');
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-
-    if (scrollProgress) scrollProgress.style.width = `${progress}%`;
-
-    if (scrollTop > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-
-    // Active Nav Link Highlight
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach(sec => {
-      const top = sec.offsetTop - 100;
-      const height = sec.offsetHeight;
-      const id = sec.getAttribute('id');
-      if (scrollTop >= top && scrollTop < top + height) {
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  });
-
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      playSound(600, 0.05);
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-      });
-    });
-  }
-}
-
-/* ==========================================================================
-   TYPING ANIMATION
-   ========================================================================== */
-function initTypingEffect() {
-  const target = document.querySelector('.typing-target');
-  if (!target) return;
-
-  const words = ["Computer Science Student", "Full-Stack Developer", "HealthTech Builder", "AI Enthusiast"];
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function type() {
-    const currentWord = words[wordIndex];
-    if (isDeleting) {
-      target.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      target.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let speed = isDeleting ? 40 : 80;
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      speed = 1800; // Pause at end of word
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      speed = 400;
-    }
-
-    setTimeout(type, speed);
-  }
-  type();
-}
-
-/* ==========================================================================
-   THEME SWITCHER
-   ========================================================================== */
-function initThemeToggle() {
-  const toggleBtn = document.getElementById('theme-toggle');
-  if (!toggleBtn) return;
-
-  const savedTheme = localStorage.getItem('f1lmw8-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  toggleBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('f1lmw8-theme', newTheme);
-    updateThemeIcon(newTheme);
-    playSound(newTheme === 'dark' ? 440 : 880, 0.1);
-    showToast(`Switched to ${newTheme.toUpperCase()} theme`, 'info');
-  });
-}
-
-function updateThemeIcon(theme) {
-  const icon = document.querySelector('#theme-toggle i');
-  if (!icon) return;
-  if (theme === 'light') {
-    icon.setAttribute('data-lucide', 'sun');
-  } else {
-    icon.setAttribute('data-lucide', 'moon');
-  }
-  if (window.lucide) lucide.createIcons();
-}
-
-/* ==========================================================================
-   SKILLS & PROJECTS RENDER
-   ========================================================================== */
-function renderSkills(categoryFilter = 'all') {
-  const container = document.getElementById('skills-container');
-  if (!container) return;
-
-  container.innerHTML = '';
-
-  const filtered = categoryFilter === 'all' 
-    ? SKILLS_DATA 
-    : SKILLS_DATA.filter(s => s.category === categoryFilter);
-
-  filtered.forEach(skill => {
-    const card = document.createElement('div');
-    card.className = 'skill-card';
-    card.innerHTML = `
-      <div class="skill-header">
-        <div class="skill-icon-box">
-          <i data-lucide="${skill.icon}"></i>
-        </div>
-        <div class="skill-title">${skill.name}</div>
-      </div>
-      <div style="display:flex; justify-between; font-size:0.8rem; color:var(--text-muted);">
-        <span>Proficiency</span>
-        <span style="font-weight:700; color:var(--accent-cyan);">${skill.level}%</span>
-      </div>
-      <div class="skill-bar-bg">
-        <div class="skill-bar-fill" data-level="${skill.level}"></div>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-
-  if (window.lucide) lucide.createIcons();
-  animateSkillBars();
-}
-
-function initSkillsObserver() {
-  const filterBtns = document.querySelectorAll('.skills-filter .filter-btn');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const cat = e.target.getAttribute('data-filter');
-      renderSkills(cat);
-      playSound(520, 0.05);
-    });
-  });
-}
-
-function animateSkillBars() {
-  const bars = document.querySelectorAll('.skill-bar-fill');
-  bars.forEach(bar => {
-    const level = bar.getAttribute('data-level');
-    setTimeout(() => {
-      bar.style.width = `${level}%`;
-    }, 100);
-  });
-}
-
-function renderProjects(categoryFilter = 'all') {
-  const container = document.getElementById('projects-container');
-  if (!container) return;
-
-  container.innerHTML = '';
-
-  const filtered = categoryFilter === 'all'
-    ? PROJECTS_DATA
-    : PROJECTS_DATA.filter(p => p.category === categoryFilter);
-
-  filtered.forEach(project => {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.innerHTML = `
-      <div class="project-img-wrapper">
-        <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy" />
-        <span class="project-badge">${project.categoryLabel}</span>
-      </div>
-      <div class="project-content">
-        <h3 class="project-title">${project.title}</h3>
-        <p class="project-desc">${project.description}</p>
-        <div class="project-tags">
-          ${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
-        </div>
-        <div class="project-footer">
-          <button class="project-btn btn-secondary" onclick="openProjectModal('${project.id}')">
-            <i data-lucide="info"></i> Details
-          </button>
-          ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" rel="noopener" class="project-btn btn-primary">
-            <i data-lucide="github"></i> Code
-          </a>` : `<a href="${project.demoUrl}" target="_blank" rel="noopener" class="project-btn btn-primary">
-            <i data-lucide="external-link"></i> Visit Site
-          </a>`}
-        </div>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-
-  if (window.lucide) lucide.createIcons();
-
-  // Filter Buttons binding
-  const projectFilterBtns = document.querySelectorAll('.projects-filter .filter-btn');
-  projectFilterBtns.forEach(btn => {
-    btn.onclick = (e) => {
-      projectFilterBtns.forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      renderProjects(e.target.getAttribute('data-filter'));
-      playSound(580, 0.05);
-    };
-  });
-}
-
-/* Modal View */
-window.openProjectModal = function(id) {
-  const project = PROJECTS_DATA.find(p => p.id === id);
-  if (!project) return;
-
-  const overlay = document.getElementById('modal-overlay');
-  const box = document.getElementById('modal-box');
-  if (!overlay || !box) return;
-
-  box.innerHTML = `
-    <button class="icon-btn modal-close-btn" onclick="closeModal()">
-      <i data-lucide="x"></i>
-    </button>
-    <img src="${project.image}" alt="${project.title}" style="width:100%; height:260px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:1.25rem;" />
-    <span class="project-badge" style="position:static; display:inline-block; margin-bottom:0.75rem;">${project.categoryLabel}</span>
-    <h2 style="font-size:1.75rem; font-weight:800; margin-bottom:0.75rem;">${project.title}</h2>
-    <p style="color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem;">${project.fullDescription}</p>
-    <div style="display:flex; gap:1.5rem; margin-bottom:1.5rem; color:var(--text-muted); font-family:var(--font-mono); font-size:0.9rem;">
-      <span>📅 ${project.year}</span>
-      <span>${project.demoUrl ? '🟢 Live' : '📦 Source available'}</span>
-    </div>
-    <div class="project-tags" style="margin-bottom:1.5rem;">
-      ${project.tags.map(t => `<span class="project-tag" style="font-size:0.85rem; padding:0.3rem 0.7rem;">${t}</span>`).join('')}
-    </div>
-    <div style="display:flex; gap:1rem;">
-      ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="flex:1; justify-content:center;">
-        <i data-lucide="external-link"></i> Live Demo
-      </a>` : ''}
-      ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1; justify-content:center;">
-        <i data-lucide="github"></i> Source Code
-      </a>` : ''}
-    </div>
-  `;
-
-  overlay.classList.add('active');
-  if (window.lucide) lucide.createIcons();
-  playSound(700, 0.1);
-};
-
-window.closeModal = function() {
-  const overlay = document.getElementById('modal-overlay');
-  if (overlay) overlay.classList.remove('active');
-};
-
-/* ==========================================================================
-   DEVELOPER CLI TERMINAL
-   ========================================================================== */
-function initTerminalModal() {
-  const toggleBtn = document.getElementById('terminal-toggle');
-  const modal = document.getElementById('terminal-modal');
-  const closeBtn = document.getElementById('terminal-close');
-  const input = document.getElementById('terminal-input');
-  const output = document.getElementById('terminal-output');
-
-  if (!toggleBtn || !modal || !input) return;
-
-  toggleBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    input.focus();
-    playSound(800, 0.08);
-  });
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-  }
-
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const cmd = input.value.trim().toLowerCase();
-      input.value = '';
-      executeCommand(cmd, output);
-      playSound(650, 0.04);
-    }
-  });
-}
-
-function executeCommand(cmd, output) {
-  const line = document.createElement('div');
-  line.style.marginBottom = '0.5rem';
-
-  const userPrompt = `<span style="color:#58a6ff;">guest@f1lmw8</span>:<span style="color:#79c0ff;">~</span>$ <span style="color:#00f2fe;">${cmd}</span><br/>`;
-
-  let response = '';
-
-  switch (cmd) {
-    case 'help':
-      response = `
-Available commands:<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">about</span>&nbsp;&nbsp;&nbsp;&nbsp;- Print developer bio overview<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">skills</span>&nbsp;&nbsp;&nbsp;&nbsp;- List top technical skills<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">projects</span>&nbsp;&nbsp;- List featured projects<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">contact</span>&nbsp;&nbsp;&nbsp;- Display contact info & GitHub profile<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">matrix</span>&nbsp;&nbsp;&nbsp;&nbsp;- Toggle matrix digital rain effect<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">theme</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Toggle dark/light theme<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">clear</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Clear terminal screen<br/>
-&nbsp;&nbsp;<span style="color:#f59e0b;">exit</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Close terminal window
-      `;
-      break;
-    case 'about':
-      response = `<span style="color:#10b981;">F1lmw8</span> (Apichai Chomthong) - Computer Science student at Maejo University. Senior project: <a href="https://chalakya.in.th" target="_blank" style="color:#00f2fe;">chalakya.in.th</a>`;
-      break;
-    case 'skills':
-      response = `Top Stack: Next.js, React, Vue/Quasar, JavaScript, Python, FastAPI, Express, PostgreSQL, Supabase, Docker, Gemini AI`;
-      break;
-    case 'projects':
-      response = PROJECTS_DATA.map(p => `• <span style="color:#00f2fe;">${p.title}</span> (${p.categoryLabel})`).join('<br/>');
-      break;
-    case 'contact':
-      response = `GitHub: <a href="https://github.com/F1lmw8" target="_blank" style="color:#00f2fe;">github.com/F1lmw8</a><br/>Email: apichai.c.dev@gmail.com`;
-      break;
-    case 'theme':
-      document.getElementById('theme-toggle').click();
-      response = `Theme toggled successfully!`;
-      break;
-    case 'matrix':
-      toggleMatrixEffect();
-      response = `Matrix Digital Rain toggled!`;
-      break;
-    case 'clear':
-      output.innerHTML = '';
-      return;
-    case 'exit':
-      document.getElementById('terminal-modal').classList.remove('active');
-      return;
-    default:
-      if (cmd === '') return;
-      response = `<span style="color:#ff5f56;">Command not found: ${cmd}</span>. Type '<span style="color:#f59e0b;">help</span>' for available commands.`;
-  }
-
-  line.innerHTML = userPrompt + response;
-  output.appendChild(line);
-  output.parentElement.scrollTop = output.parentElement.scrollHeight;
-}
-
-let matrixActive = false;
-function toggleMatrixEffect() {
-  const canvas = document.getElementById('matrix-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  matrixActive = !matrixActive;
-  if (matrixActive) {
-    canvas.classList.add('active');
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
-
-    const chars = '0123456789ABCDEFJAVAJSDEVAI';
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-
-    function drawMatrix() {
-      if (!matrixActive) return;
-      ctx.fillStyle = 'rgba(13, 17, 23, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#00f2fe';
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-      setTimeout(drawMatrix, 50);
-    }
-    drawMatrix();
-  } else {
-    canvas.classList.remove('active');
-  }
-}
-
-/* ==========================================================================
-   CONTACT FORM & TOAST ALERTS
-   ========================================================================== */
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('form-name').value;
-    showToast(`Thank you, ${name}! Your message has been sent.`, 'success');
-    form.reset();
-    playSound(900, 0.15);
-  });
-
-  const copyEmailBtn = document.getElementById('copy-email-btn');
-  if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('apichai.c.dev@gmail.com');
-      showToast('Email copied to clipboard!', 'success');
-      playSound(750, 0.08);
-    });
-  }
-}
-
-function showToast(message, type = 'info') {
-  const container = document.getElementById('toast-container');
-  if (!container) return;
-
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = `
-    <i data-lucide="check-circle" class="toast-icon"></i>
-    <span>${message}</span>
-  `;
-  container.appendChild(toast);
-
-  if (window.lucide) lucide.createIcons();
-
-  setTimeout(() => toast.classList.add('show'), 10);
-
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
-}
-
-/* Web Audio API Sound Synthesizer */
-function playSound(freq = 440, duration = 0.05) {
+document.getElementById("copy-email").addEventListener("click", async () => {
   try {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start();
-    osc.stop(ctx.currentTime + duration);
-  } catch (err) {
-    // Ignore audio context autoplay restrictions
+    await navigator.clipboard.writeText(EMAIL);
+    showToast(t("contact.copied"));
+  } catch (_) {
+    location.href = `mailto:${EMAIL}`;
   }
-}
+});
 
-function initAvatarToggle() {
-  const img = document.getElementById('avatar-img-element');
-  const btn = document.getElementById('avatar-switch-btn');
-  if (!img || !btn) return;
+// Close the mobile menu after choosing a link
+document.querySelectorAll(".nav-mobile a").forEach((a) =>
+  a.addEventListener("click", () => a.closest("details").removeAttribute("open")),
+);
 
-  let isReal = true;
-  btn.addEventListener('click', () => {
-    isReal = !isReal;
-    if (isReal) {
-      img.src = 'assets/images/user-real.jpg';
-      btn.innerHTML = '<i data-lucide="sparkles"></i> Switch to Cyber Mode';
-      showToast('Switched to Real Photo', 'info');
-    } else {
-      img.src = 'assets/images/avatar.png';
-      btn.innerHTML = '<i data-lucide="camera"></i> Switch to Real Photo';
-      showToast('Switched to Cyber Neon Avatar', 'info');
-    }
-    if (window.lucide) lucide.createIcons();
-    playSound(720, 0.08);
-  });
-}
+document.getElementById("year").textContent = new Date().getFullYear();
+applyLang(detectLang());
