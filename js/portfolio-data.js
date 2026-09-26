@@ -23,8 +23,6 @@ const PORTFOLIO_I18N = {
     "hero.explore": "ดูโปรเจค",
     "hero.hire": "จ้างงาน / ราคา",
     "hero.github": "GitHub",
-    "hero.avatarCyber": "เปลี่ยนเป็นโหมด Cyber",
-    "hero.avatarReal": "เปลี่ยนเป็นรูปจริง",
     "hero.role": "CS Student · Full-Stack Developer",
     "hero.stat1": "Repos",
     "hero.stat2": "เดโมออนไลน์",
@@ -92,8 +90,6 @@ const PORTFOLIO_I18N = {
 
     "footer.note": "Hosted on GitHub Pages",
     "toast.theme": "เปลี่ยนธีมแล้ว",
-    "toast.real": "เปลี่ยนเป็นรูปจริงแล้ว",
-    "toast.cyber": "เปลี่ยนเป็นอวาตาร์ Cyber แล้ว",
   },
 
   en: {
@@ -117,8 +113,6 @@ const PORTFOLIO_I18N = {
     "hero.explore": "Explore projects",
     "hero.hire": "Hire me / Pricing",
     "hero.github": "GitHub",
-    "hero.avatarCyber": "Switch to Cyber Mode",
-    "hero.avatarReal": "Switch to Real Photo",
     "hero.role": "CS Student · Full-Stack Developer",
     "hero.stat1": "Repos",
     "hero.stat2": "Live demos",
@@ -186,8 +180,6 @@ const PORTFOLIO_I18N = {
 
     "footer.note": "Hosted on GitHub Pages",
     "toast.theme": "Theme switched",
-    "toast.real": "Switched to real photo",
-    "toast.cyber": "Switched to cyber avatar",
   },
 };
 

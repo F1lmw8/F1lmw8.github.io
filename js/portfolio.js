@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarAndScroll();
   initTypingEffect();
   initThemeToggle();
-  initAvatarToggle();
   applyLang(lang);
   initSkillsObserver();
   initTerminalModal();
@@ -689,28 +688,4 @@ function playSound(freq = 440, duration = 0.05) {
   } catch (err) {
     // Ignore audio context autoplay restrictions
   }
-}
-
-function initAvatarToggle() {
-  const img = document.getElementById('avatar-img-element');
-  const btn = document.getElementById('avatar-switch-btn');
-  if (!img || !btn) return;
-
-  let isReal = true;
-  btn.addEventListener('click', () => {
-    isReal = !isReal;
-    if (isReal) {
-      img.src = 'assets/images/user-real.jpg';
-      btn.innerHTML = '<i data-lucide="sparkles"></i> <span data-i18n="hero.avatarCyber"></span>';
-      btn.querySelector('span').textContent = t('hero.avatarCyber');
-      showToast(t('toast.real'), 'info');
-    } else {
-      img.src = 'assets/images/avatar.png';
-      btn.innerHTML = '<i data-lucide="camera"></i> <span data-i18n="hero.avatarReal"></span>';
-      btn.querySelector('span').textContent = t('hero.avatarReal');
-      showToast(t('toast.cyber'), 'info');
-    }
-    if (window.lucide) lucide.createIcons();
-    playSound(720, 0.08);
-  });
 }
