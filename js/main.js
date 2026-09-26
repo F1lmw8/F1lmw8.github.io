@@ -219,7 +219,7 @@ function initTypingEffect() {
   const target = document.querySelector('.typing-target');
   if (!target) return;
 
-  const words = ["Full-Stack Engineer", "Creative Technologist", "AI & ML Enthusiast", "Open-Source Creator"];
+  const words = ["Computer Science Student", "Full-Stack Developer", "HealthTech Builder", "AI Enthusiast"];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -372,9 +372,11 @@ function renderProjects(categoryFilter = 'all') {
           <button class="project-btn btn-secondary" onclick="openProjectModal('${project.id}')">
             <i data-lucide="info"></i> Details
           </button>
-          <a href="${project.githubUrl}" target="_blank" rel="noopener" class="project-btn btn-primary">
+          ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" rel="noopener" class="project-btn btn-primary">
             <i data-lucide="github"></i> Code
-          </a>
+          </a>` : `<a href="${project.demoUrl}" target="_blank" rel="noopener" class="project-btn btn-primary">
+            <i data-lucide="external-link"></i> Visit Site
+          </a>`}
         </div>
       </div>
     `;
@@ -423,9 +425,9 @@ window.openProjectModal = function(id) {
       ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="flex:1; justify-content:center;">
         <i data-lucide="external-link"></i> Live Demo
       </a>` : ''}
-      <a href="${project.githubUrl}" target="_blank" class="btn btn-secondary" style="flex:1; justify-content:center;">
+      ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" rel="noopener" class="btn btn-secondary" style="flex:1; justify-content:center;">
         <i data-lucide="github"></i> Source Code
-      </a>
+      </a>` : ''}
     </div>
   `;
 
@@ -496,10 +498,10 @@ Available commands:<br/>
       `;
       break;
     case 'about':
-      response = `<span style="color:#10b981;">F1lmw8</span> - Full-Stack Developer & Agentic AI Specialist building high-performance web applications and autonomous AI tools.`;
+      response = `<span style="color:#10b981;">F1lmw8</span> (Apichai Chomthong) - Computer Science student at Maejo University. Senior project: <a href="https://chalakya.in.th" target="_blank" style="color:#00f2fe;">chalakya.in.th</a>`;
       break;
     case 'skills':
-      response = `Top Stack: React, Next.js, TypeScript, Python, FastAPI, Node.js, PostgreSQL, Docker, Agentic AI`;
+      response = `Top Stack: Next.js, React, Vue/Quasar, JavaScript, Python, FastAPI, Express, PostgreSQL, Supabase, Docker, Gemini AI`;
       break;
     case 'projects':
       response = PROJECTS_DATA.map(p => `• <span style="color:#00f2fe;">${p.title}</span> (${p.categoryLabel})`).join('<br/>');

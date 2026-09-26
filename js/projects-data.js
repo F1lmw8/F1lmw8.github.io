@@ -3,28 +3,27 @@
 const PROJECTS_DATA = [
   {
     id: "project-pharmacy",
-    title: "Multi-Language Pharmacy Label & LINE OA System",
+    title: "Chalakya — Pharmacy Label & LINE OA System",
     category: "web",
-    categoryLabel: "HealthTech & Web",
+    categoryLabel: "Senior Project",
     image: "assets/images/project-pharmacy.jpg",
     description: "Tri-lingual (TH/EN/ZH) smart prescription label printer with direct barcode generation, LINE OA Digital Label delivery, and PDPA-compliant patient health registry.",
-    fullDescription: "A pharmacy workflow suite built for retail drugstores. Features WYSIWYG sticker printing with Code 128 barcodes, multi-language dosage assembly (Thai, English, Chinese), LINE Official Account digital label dispatch via Vercel Serverless, Supabase cloud syncing, SheetJS Excel master drug import, and PDPA-compliant digital consent forms.",
+    fullDescription: "My senior (capstone) project at Maejo University, live at chalakya.in.th. A pharmacy workflow suite built for retail drugstores. Features WYSIWYG sticker printing with Code 128 barcodes, multi-language dosage assembly (Thai, English, Chinese), LINE Official Account digital label dispatch via Vercel Serverless, Supabase cloud syncing, SheetJS Excel master drug import, and PDPA-compliant digital consent forms.",
     tags: ["JavaScript", "LINE LIFF", "Supabase", "Vercel Serverless", "SheetJS", "LINE Messaging API"],
     year: "2026",
-    demoUrl: "https://pharmacy-label-system.vercel.app",
-    githubUrl: "https://github.com/F1lmw8/Pharmacy_Label_System"
+    demoUrl: "https://chalakya.in.th"
   },
   {
     id: "project-rdu-pos",
-    title: "RDU Pharmacy POS & AI Clinical Agent",
+    title: "RDU Pharmacy POS & AI Clinical Agent (Prototype)",
     category: "ai",
     categoryLabel: "AI & HealthTech",
     image: "assets/images/covers/rdu-pos.svg",
     description: "Pharmacy point-of-sale with Rational Drug Use (RDU) lookup, stock & sales dashboards, PromptPay QR checkout, and a tool-calling AI agent grounded on RxNorm and openFDA.",
-    fullDescription: "A Next.js 15 App Router system for Thai drugstores. Pharmacists can search drugs by Thai or English name (Thai phonetic mapper), view RDU details and leaflets, sell with PromptPay QR payment, and manage lot-based stock, stock-in, and sales logs with Recharts dashboards backed by PostgreSQL. A built-in AI assistant (Vercel AI SDK + Gemini) calls RxNorm and openFDA tools and answers only from official FDA data, with a zero-hallucination guardrail.",
+    fullDescription: "The first prototype of my senior project — about 40–50% of a full pharmacy POS was built before the project pivoted to the Pharmacy Label System (Chalakya), but the completed features are fully working. A Next.js 15 App Router system for Thai drugstores. Pharmacists can search drugs by Thai or English name (Thai phonetic mapper), view RDU details and leaflets, sell with PromptPay QR payment, and manage lot-based stock, stock-in, and sales logs with Recharts dashboards backed by PostgreSQL, plus GPP reports (ข.ย. 9/10/11), patient allergy alerts, FDA product lookup, Goods Receipt Notes, and VAT / Section 86 tax invoices with Excel export. A built-in AI assistant (Vercel AI SDK + Gemini) calls RxNorm and openFDA tools and answers only from official FDA data, with a zero-hallucination guardrail.",
     tags: ["Next.js 15", "React 19", "PostgreSQL", "Vercel AI SDK", "Gemini", "openFDA", "Recharts", "PromptPay QR"],
     year: "2026",
-    githubUrl: "https://github.com/F1lmw8/Pos_project"
+    githubUrl: "https://github.com/F1lmw8/Pos_project/tree/film"
   },
   {
     id: "project-nocode-adventure",
