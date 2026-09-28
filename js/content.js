@@ -305,9 +305,8 @@ const PROCESS_STEPS = [
 
 const EMAIL = "apichai.c.dev@gmail.com";
 
-// TODO: replace the Facebook href with your profile URL.
 const CONTACTS = [
-  { label: "Facebook", value: "Filmkung", href: "https://www.facebook.com/", icon: "facebook" },
+  { label: "Facebook", value: "Filmkung Apichai", href: "https://www.facebook.com/Filmw8", icon: "facebook" },
   { label: "LINE ID", value: "apichaichomthong", href: "https://line.me/ti/p/~apichaichomthong", icon: "line" },
   { label: "Email", value: EMAIL, href: `mailto:${EMAIL}`, icon: "mail" },
   { label: "GitHub", value: "github.com/F1lmw8", href: GITHUB_URL, icon: "github" },
